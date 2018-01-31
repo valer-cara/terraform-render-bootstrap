@@ -11,6 +11,11 @@ resource "template_dir" "static-manifests" {
     service_cidr      = var.service_cidr
     trusted_certs_dir = var.trusted_certs_dir
     aggregation_flags = var.enable_aggregation ? indent(4, local.aggregation_flags) : ""
+
+    feature_gates                       = "${length(var.feature_gates) > 0 ? format("- --feature-gates=%s", join(",", formatlist("%s=true", var.feature_gates))) : ""}"
+    extra_flags_kube_apiserver          = "${indent(8, join("\n", formatlist("- %s", var.extra_flags_kube_apiserver)))}"
+    extra_flags_kube_scheduler          = "${indent(8, join("\n", formatlist("- %s", var.extra_flags_kube_scheduler)))}"
+    extra_flags_kube_controller_manager = "${indent(8, join("\n", formatlist("- %s", var.extra_flags_kube_controller_manager)))}"
   }
 }
 

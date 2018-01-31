@@ -22,6 +22,8 @@ spec:
     - kube-scheduler
     - --kubeconfig=/etc/kubernetes/secrets/kubeconfig
     - --leader-elect=true
+    ${feature_gates}
+    ${extra_flags_kube_scheduler}
     livenessProbe:
       httpGet:
         scheme: HTTPS

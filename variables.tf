@@ -112,3 +112,27 @@ variable "cluster_domain_suffix" {
   default     = "cluster.local"
 }
 
+variable "extra_flags_kube_apiserver" {
+  description = "List of extra flags for kube-apiserver"
+  type        = list(string)
+  default     = []
+}
+
+variable "extra_flags_kube_scheduler" {
+  description = "List of extra flags for kube-scheduler"
+  type        = list(string)
+  default     = []
+}
+
+variable "extra_flags_kube_controller_manager" {
+  description = "List of extra flags for kube-controller-manager"
+  type        = list(string)
+  default     = []
+}
+
+variable "feature_gates" {
+  description = "List of feature gates"
+  type        = list(string)
+  default     = []
+}
+
